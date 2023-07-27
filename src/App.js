@@ -6,7 +6,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { THEME } from './commonStyle/theme';
 import GlobalStyle from './commonStyle/commonCss';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const queryClient = new QueryClient()
@@ -17,6 +18,7 @@ function App() {
         <ThemeProvider theme={THEME}>
           <GlobalStyle demo={false} />
           <div className="">
+            <ToastContainer /> 
             <LoginForm />
           </div>
         </ThemeProvider>

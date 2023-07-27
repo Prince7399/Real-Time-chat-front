@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -24,13 +25,16 @@ const LoginForm = () => {
                 console.log('formData :>> ', formData);
                 const response = await axios.post('http://localhost:5000/signup', formData);
                 console.log('response :>> ', response);
+                if (response?.status === 200) {
+                    localStorage.setItem('userData', JSON.stringify(response?.data));
+                    toast.success("User SignUp Successfully")
+                }
             }
         } catch (error) {
-
+            console.log(error);
         }
     }
 
-    // console.log('formData :>> ', formData);
     return (
         <>
             <Container fluid className="d-flex justify-content-center align-items-center login-form-container vh-100" >
